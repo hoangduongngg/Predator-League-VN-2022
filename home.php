@@ -4,32 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Predator League VN 2022
-    </title>
-    <link rel="stylesheet" href="asset/css/home.css">
-    
+    <title>REDLINE MUSIC PARTY</title>
 </head>
 <body>
-    <div class="overlay-navigation">
-        <nav role="navigation">
-          <ul>
-            <li><a href="#" data-content="The beginning">Home</a></li>
-            <li><a href="#" data-content="Curious?">About</a></li>
-            <li><a href="#" data-content="I got game">Skills</a></li>
-            <li><a href="#" data-content="Only the finest">Works</a></li>
-            <li><a href="#" data-content="Don't hesitate">Contact</a></li>
-          </ul>
-        </nav>
-      </div>
-      
-      <section class="home">
-          <a href="https://codepen.io/fluxus/pen/gPWxXJ" target="_blank">Click for CSS version</a>
-        <div class="open-overlay">
-          <span class="bar-top"></span>
-          <span class="bar-middle"></span>
-          <span class="bar-bottom"></span>
-        </div>
-      </section>
-      <script src="asset/js/home.js"></script>
-    </body>
-    </html>
+
+    <!-- top -->
+    <?php include "menu.html" ?>
+
+    <!-- content -->
+    <img src="https://scontent.fhan14-2.fna.fbcdn.net/v/t39.30808-6/285745123_5166110960091119_5452591427897690229_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=e3f864&_nc_ohc=2CioGzMBOuUAX8cQbHY&_nc_ht=scontent.fhan14-2.fna&oh=00_AT9nEPcXnbwn3ilK5jJsNaf3PWU0Sk_n-uuH3MvAPUuCnQ&oe=62CB2673" alt="picture">
+    <?php include "button_ticket.html" ?>
+    
+    <?php include "content.html" ?>
+    
+    <?php 
+    // include "layout_blog.html" 
+    ?>
+    <img src="asset/img/Contact.svg" alt="anh">
+    <!-- footer -->
+   <?php include "footer.html" ?>
+</body>
+</html>

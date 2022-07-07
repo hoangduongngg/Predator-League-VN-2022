@@ -1,0 +1,86 @@
+﻿$(function () {
+    var finalUTCDay = $('#finalDayInput').val();
+
+    if (finalUTCDay !== undefined &&
+        finalUTCDay !== null &&
+        finalUTCDay !== '') {
+
+        var dArray = finalUTCDay.replace(/\//g,'-').split(/[- :]/);
+        var fDate = new Date();
+        fDate.setUTCFullYear(dArray[0]);
+        fDate.setUTCMonth(dArray[1] - 1,dArray[2]);
+        fDate.setUTCHours(dArray[3] ? dArray[3]:"00");
+        fDate.setUTCMinutes(dArray[4] ? dArray[4] : "00");
+        fDate.setUTCSeconds(dArray[5] ? dArray[5] : "00");
+
+        dateFocus = fDate;
+
+        if ($('.getReady-countdown').length > 0 &&
+            isScrolledIntoView($('.getReady-countdown'))) {
+            isCount = true;
+            clearTimeout(setTimeout($.predator.countTime(), 1000));
+        };
+    }
+});
+
+function openRule2(evt, GameName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("wrap-tab-team2");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks2");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(GameName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+function openRule(evt, GameName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("wrap-tab-team");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(GameName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+if (document.getElementById('defaultOpen') != null)
+    document.getElementById("defaultOpen").click();
+
+$('table').removeAttr("style").removeAttr("border");
+$('table td').removeAttr("style");
+$('table th').removeAttr("style");
+
+$('table td').each(function () {
+    var cls = $(this).attr("Class");
+    if (cls !== undefined) {
+        var text = $(this).text();
+        var region = $(this).parents("div[data-region]").attr("data-region");
+        var matchId = $(this).parents("div[data-matchId]").attr("data-matchId");
+        $(this).text('');
+        $(this).append('<a href="/regionupdatedetail?region=' + region + '&matchid=' + matchId + '&name=' + cls + '" target="_blank">' + text + '</a>');
+		//$(this).append('<a href="teamstanding.html'+'" target="_blank">' + text + '</a>');
+    }
+});
+
+$('table').addClass("divTable");
+$('table tbody').addClass("divTableBody");
+$('table tr').addClass("divTableRow");
+$('table th').addClass("divTableRound");
+$('table td').addClass("divTableCell");
+
+$('.wrap-partner-carousel').on('afterChange', function (event, slick, currentSlide, nextSlide) {
+    $('.wrap-team-all').hide();
+    $('#RegionUpdateTeamIntroduction' + (currentSlide + 1)).show();
+});
+
+$('#RegionUpdateTeamIntroduction1').show();
+

@@ -1,0 +1,193 @@
+function makeImagesResponsive(){var e=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,t=document.getElementsByTagName("body")[0].getElementsByTagName("img");if(t.length===0)return;var n;t[0].hasAttribute?n=function(e,t){return e.hasAttribute(t)}:n=function(e,t){return e.getAttribute(t)!==null};var r=window.devicePixelRatio?window.devicePixelRatio>=1.2?1:0:0;for(var i=0;i<t.length;i++){var s=t[i],o=r&&n(s,"data-src2x")?"data-src2x":"data-src",u=r&&n(s,"data-src-base2x")?"data-src-base2x":"data-src-base";if(!n(s,o))continue;var a=n(s,u)?s.getAttribute(u):"",f=s.getAttribute(o),l=f.split(",");for(var c=0;c<l.length;c++){var h=l[c].split(":"),p=h[0],d=h[1],v,m;if(p.indexOf("<")!==-1){v=p.split("<");if(l[c-1]){var g=l[c-1].split(/:(.+)/),y=g[0].split("<");m=e<=v[1]&&e>y[1]}else m=e<=v[1]}else{v=p.split(">");if(l[c+1]){var b=l[c+1].split(/:(.+)/),w=b[0].split(">");m=e>=v[1]&&e<w[1]}else m=e>=v[1]}if(m){var E=a+d;s.src!==E&&s.setAttribute("src",E);break}}}}if(window.addEventListener){window.addEventListener("load",makeImagesResponsive,!1);window.addEventListener("resize",makeImagesResponsive,!1)}else{window.attachEvent("onload",makeImagesResponsive);window.attachEvent("onresize",makeImagesResponsive)};
+var dateFocus = new Date(2020,2,15,0,0,0);//年,月,日,時,分,秒
+var isCount = true;
+(function($) {
+	$.predator = {
+		init:function(){
+            $(document).on('click', '.coming', function(event) {
+                event.preventDefault();
+                $('#soon').fadeIn();
+            });
+            $('.nav-menu').on('click', function(event) {
+                event.preventDefault();
+                $('#menu').fadeIn();
+            });
+			$('.nav-menu-R').on('click', function(event) {
+                event.preventDefault();
+                $('#menu').fadeIn();
+            });
+            $('.menu-close').on('click', function(event) {
+                event.preventDefault();
+                $('#menu').fadeOut();
+            });
+            $('.btn-coming-soon-close').on('click', function(event) {
+                event.preventDefault();
+                $('#soon').fadeOut();
+            });
+            $('.icon-play').magnificPopup({
+                type: 'iframe',
+                mainClass: 'mfp-fade',
+                removalDelay: 160,
+                preloader: false,
+
+                fixedContentPos: false
+            });
+            $('.image-popup').magnificPopup({
+                type: 'image',
+                mainClass: 'mfp-fade',
+                removalDelay: 160,
+                preloader: true,
+
+                fixedBgPos: true, fixedContentPos: true
+            });
+            // start-----
+            $('.closed').on('click', function (event) {
+                event.preventDefault();
+                $('#registrationClosed').fadeIn();
+            });
+
+            $('.btn-registration-close').on('click', function (event) {
+                event.preventDefault();
+                $('#registrationClosed').fadeOut();
+            });
+            // end-----
+        },
+        countTime:function(){
+            if ( isCount )
+            {
+                isCount = false;
+
+                var options = {
+                    useEasing : true,
+                    useGrouping : true,
+                    separator : ',',
+                    decimal : '.',
+                    prefix : '',
+                    suffix : ''
+                };
+                var ONE_HOUR = 1000 * 60 * 60;
+                var ONE_DAY = 1000 * 60 * 60 * 24;
+                var ONE_MONTH = 1000 * 60 * 60 * 24 * 30;
+
+                var $now = new Date();
+                var diff = dateFocus - $now;
+                var leftMonth = Math.floor(diff/ONE_MONTH);
+                if(leftMonth > 0) diff = diff - (leftMonth * ONE_MONTH);
+
+                var leftDay = Math.floor(diff/ONE_DAY);
+                if(leftDay > 0) diff = diff - (leftDay * ONE_DAY);
+
+                var leftHour = Math.floor(diff/ONE_HOUR);
+
+                var months = new CountUp('count-Months', 99, leftMonth, 0, 5.5, options);
+                months.start();
+                var days = new CountUp('count-Days', 99, leftDay, 0, 3.5, options);
+                days.start();
+                var hours = new CountUp('count-Hours', 99, leftHour, 0, 2.5, options);
+                hours.start();
+            };
+        },
+        shield:function(){
+            if ( 0 < $('.wrap-carousel').length )
+            {
+                $('.wrap-carousel').slick({
+                    prevArrow:'<div class="carosule-arr-prev"><img src="images/shield/img-carousel-prev.png" width="38" height="69" alt=""/></div>',
+                    nextArrow:'<div class="carosule-arr-next"><img src="images/shield/img-carousel-next.png" width="38" height="73" alt=""/></div>',
+                    centerMode: true,
+                    variableWidth: true
+                });
+            };
+            if (0 < $('.slick-shield').length) {
+                $('.slick-shield').slick({
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    dots: true,
+                    arrows: false,
+                    autoplay: true,
+                    autoplaySpeed: 2000,
+                    fade: true
+                });
+            }
+        },
+        region:function(){
+            if ( 0 < $('.wrap-region-carousel').length )
+            {
+                $('.wrap-region-carousel').slick({
+                    prevArrow:'<div class="region-carosule-arr-prev"><img src="images/shield/img-carousel-prev.png" width="58" height="109" alt=""/></div>',
+                    nextArrow:'<div class="region-carosule-arr-next"><img src="images/shield/img-carousel-next.png" width="58" height="113" alt=""/></div>',
+                    centerMode: true,
+                    variableWidth: true,
+                    slidesToShow:4
+                });
+            };
+            if ( 0 < $('.wrap-partner-carousel').length )
+            {
+                $('.wrap-partner-carousel').slick({
+                    prevArrow:'<div class="region-carosule-arr-prev"><img src="images/shield/img-carousel-prev.png" width="58" height="109" alt=""/></div>',
+                    nextArrow:'<div class="region-carosule-arr-next"><img src="images/shield/img-carousel-next.png" width="58" height="113" alt=""/></div>',
+                    centerMode: true,
+                    variableWidth: true,
+                    slidesToShow:4,
+                });
+            };
+            if ( 0 < $('.wrap-team-carousel').length )
+            {
+                $('.wrap-team-carousel').slick({
+                    prevArrow:'<div class="region-carosule-arr-prev"><img src="images/shield/img-carousel-prev.png" width="58" height="109" alt=""/></div>',
+                    nextArrow:'<div class="region-carosule-arr-next"><img src="images/shield/img-carousel-next.png" width="58" height="113" alt=""/></div>',
+                    centerMode: true,
+                    variableWidth: true,
+                    slidesToShow:4,
+                    asNavFor: '.wrap-team-all',
+                });
+                $('.wrap-team-all').slick({
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    asNavFor: '.wrap-team-carousel',
+                    dots: false,
+                    arrows: false,
+                    focusOnSelect: true
+                });
+            };
+        },
+        registration:function(){
+            if ( 0 < $('.wrap-regist-kv').length )
+            {
+                $('.wrap-regist-kv').slick({
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    dots: true,
+                    arrows: false,
+                    autoplay: true,
+                    autoplaySpeed: 2000,
+                    fade: true
+                });
+            }
+        }
+	};
+
+	$(function () {
+        $.predator.registration();
+        $.predator.shield();
+        $.predator.region();
+        $.predator.init();
+
+        if ( $('.getReady-countdown').length )
+        {
+            if ( isScrolledIntoView($('.getReady-countdown')) ) $.predator.countTime();
+            $(window).scroll(function () {
+                if ( isScrolledIntoView($('.getReady-countdown')) ) $.predator.countTime();
+            });
+        };
+	});
+})(jQuery);
+function isScrolledIntoView(elem)
+{
+    var docViewTop = $(window).scrollTop();
+    var docViewBottom = docViewTop + $(window).height();
+
+    var elemTop = $(elem).offset().top;
+    var elemBottom = elemTop + $(elem).height();
+
+    return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+}
