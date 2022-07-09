@@ -132,3 +132,7 @@
   body {
     background-color: black;
   }
+
+  .nav__ul li {
+    text-transform: uppercase;
+  }
